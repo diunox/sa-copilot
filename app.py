@@ -14,8 +14,8 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, StreamingResponse
 from pydantic import BaseModel
 
-from .engine import Copilot
-from .tools import Toolbox
+from engine import Copilot
+from tools import Toolbox
 
 app = FastAPI(title="SA Copilot (webinar)")
 

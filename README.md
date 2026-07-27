@@ -12,7 +12,7 @@ the closed-source comparator for the side-by-side segment.
 ## Run
 ```
 pip install fastapi uvicorn httpx
-uvicorn copilot.app:app --port 8801
+uvicorn app:app --port 8801
 ```
 Optional for live screenshots: `pip install playwright && playwright install chromium`
 (without it, set `COPILOT_SCREENSHOT_FALLBACK=/path/to/cached.png`).

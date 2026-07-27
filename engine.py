@@ -15,7 +15,7 @@ from dataclasses import dataclass, field
 
 import httpx
 
-from .tools import SCHEMAS, Toolbox
+from tools import SCHEMAS, Toolbox
 
 SYSTEM = """You are the DigitalOcean SA Copilot. A customer wants their application running on
 DigitalOcean. Work stepwise with your tools: inspect the repository (including any architecture
