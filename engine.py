@@ -41,7 +41,7 @@ class RunTotals:
 
 class Copilot:
     def __init__(self, base_url: str, api_key: str, model: str, toolbox: Toolbox,
-                 price_in: float = 0.0, price_out: float = 0.0, max_tokens: int = 2048):
+                 price_in: float = 0.0, price_out: float = 0.0, max_tokens: int = 4096):
         self.base_url = base_url.rstrip("/")
         self.model = model
         self.toolbox = toolbox
@@ -98,6 +98,13 @@ class Copilot:
 
             tool_calls = msg.get("tool_calls") or []
             if not tool_calls:
+                # K3 gotcha: a "length" finish is a truncated turn, not a conclusion —
+                # feed it back and let the model finish the job.
+                if choice.get("finish_reason") == "length" and step < MAX_STEPS:
+                    messages.append({"role": "assistant", "content": msg.get("content") or ""})
+                    messages.append({"role": "user",
+                                     "content": "You were cut off. Continue — finish the remaining steps and the final recommendation."})
+                    continue
                 break
 
             messages.append(msg)
