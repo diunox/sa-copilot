@@ -43,6 +43,7 @@ def build(model: str) -> Copilot:
         toolbox=tb,
         price_in=_price(model, "IN"),
         price_out=_price(model, "OUT"),
+        price_cached=_price(model, "CACHED"),
     )
 
 

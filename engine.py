@@ -41,11 +41,13 @@ class RunTotals:
 
 class Copilot:
     def __init__(self, base_url: str, api_key: str, model: str, toolbox: Toolbox,
-                 price_in: float = 0.0, price_out: float = 0.0, max_tokens: int = 4096):
+                 price_in: float = 0.0, price_out: float = 0.0, price_cached: float = 0.0,
+                 max_tokens: int = 4096):
         self.base_url = base_url.rstrip("/")
         self.model = model
         self.toolbox = toolbox
         self.price_in, self.price_out = price_in, price_out
+        self.price_cached = price_cached or price_in  # no cache discount unless priced
         self.max_tokens = max_tokens
         self.http = httpx.Client(timeout=180, headers={"Authorization": f"Bearer {api_key}"})
 
@@ -142,6 +144,6 @@ class Copilot:
         if self.price_in and self.price_out:
             totals.cost_usd = round(
                 (totals.prompt_tokens - totals.cached_tokens) * self.price_in / 1e6
-                + totals.cached_tokens * self.price_in * 0.1 / 1e6
+                + totals.cached_tokens * self.price_cached / 1e6
                 + totals.completion_tokens * self.price_out / 1e6, 6)
         yield {"ev": "done", "totals": totals.__dict__}
