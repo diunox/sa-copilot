@@ -7,7 +7,7 @@ dry-run — all read-only), recommends region/size/monthly-cost, then **screensh
 site and visually confirms it** (vision again). Model is a parameter — the identical app runs on
 the closed-source comparator for the side-by-side segment.
 
-**This app is NOT part of the koine-web deploy.** It runs on the presenter's machine only.
+**This app is presenter-local only** — it is not deployed anywhere and serves no public traffic.
 
 ## Run
 ```

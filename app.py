@@ -1,4 +1,4 @@
-"""SA Copilot — presenter-only webinar demo app. NOT wired into the public koine-web deploy.
+"""SA Copilot — presenter-only webinar demo app. Runs locally; never deployed.
 
 Run:  uvicorn copilot.app:app --port 8801
 Env:  DO_INFERENCE_KEY (webinar key) · DO_API_TOKEN (READ-ONLY) · COPILOT_MODEL (kimi-k3)
